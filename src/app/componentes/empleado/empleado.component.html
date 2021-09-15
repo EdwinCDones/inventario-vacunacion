@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-syringe"></i> Información Personal
+        </a>
+    </div>
+</nav>
+<div >
+    <strong> <label class="form-label">Fecha de Nacimiento:</label></strong>
+    <input type="text" placeholder="Ej. Eduardo Fabian" class="form-control">
+</div>
+
+<div >
+    <strong> <label class="form-label">Dirección de Domicilio:</label> </strong>
+    <input type="text" placeholder="Ej. Cardenas Muñoz" class="form-control">
+</div>
+<div >
+    <strong> <label class="form-label">Teléfono:</label></strong>
+    <input required maxlength="10" type="text"
+        onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+       placeholder="Ej. 1245212166" class="form-control">
+</div>
+<div >
+    <strong> <label class="form-label">Estado de Vacunación:</label></strong>
+    <input type="text"  placeholder="Ej. ejemplo@email.com" class="form-control">
+    <small id="emailHelp" class="form-text text-muted">Nunca compartas tu correo con
+        nadie.</small>
+</div>
+
+<div class="col text-center">
+    <button  class="btn btn-primary mt-4">
+        Guardar <i class="fas fa-save"></i>
+    </button>
+</div>

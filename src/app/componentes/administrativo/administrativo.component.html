@@ -1,0 +1,114 @@
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-syringe"></i> Inventario Vacunación
+        </a>
+
+    </div>
+
+</nav>
+<br>
+<div class="container">
+    <button type="button" (click) = "resetEmpleado()" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalForm">
+        <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+    </button>
+</div>
+<!-- Click on Modal Button -->
+
+<hr>
+
+<div class="container">
+
+    <a class="navbar-brand " href="#">
+        <i class="fas fa-user-friends"></i> Listado de Empleados
+    </a>
+    <hr>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Password</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of empleados; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{employee.nombre}}</td>
+                <td>{{employee.apellido}}</td>
+                <td>{{ employee.cedula }}</td>
+                <td>{{employee.correo}}</td>
+                <td>{{employee.usuario}}</td>
+                <td>{{employee.password}}</td>
+                <td>
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" (click)="openForEdit(employee)" data-bs-toggle="modal"
+                            data-bs-target="#modalForm" class="btn btn-secondary"><i
+                                class="fas fa-edit    "></i></button>
+                        <button type="button" (click)="eliminarEmpleado(employee)" class="btn btn-danger"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-4">
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h3>{{selectedEmployee.id == 0 ? "Inserte un nuevo Empleado" : "Editar Empleado"}}</h3>
+                                </div>
+                                <hr>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Nombres:</label></strong>
+                                    <input type="text" [(ngModel)]="selectedEmployee.nombre"
+                                        placeholder="Ej. Eduardo Fabian" class="form-control">
+                                </div>
+
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Apellidos:</label> </strong>
+                                    <input type="text" [(ngModel)]="selectedEmployee.apellido"
+                                        placeholder="Ej. Cardenas Muñoz" class="form-control">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Cédula:</label></strong>
+                                    <input required maxlength="10" type="text" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" [(ngModel)]="selectedEmployee.cedula"
+                                        placeholder="Ej. 1245212166" class="form-control">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Correo:</label></strong>
+                                    <input type="text" [(ngModel)]="selectedEmployee.correo"
+                                        placeholder="Ej. ejemplo@email.com" class="form-control">
+                                    <small id="emailHelp" class="form-text text-muted">Nunca compartas tu correo con
+                                        nadie.</small>
+                                </div>
+                                <div class="col text-center">
+                                    <button (click)="addOrEdit()" class="btn btn-primary mt-4">
+                                        Guardar <i class="fas fa-save"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<router-outlet></router-outlet>
