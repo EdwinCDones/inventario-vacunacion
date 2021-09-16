@@ -3,32 +3,184 @@
         <a class="navbar-brand" href="#">
             <i class="fas fa-syringe"></i> Información Personal
         </a>
+        <form class="form-inline">
+            <button class="btn btn-danger my-2 my-sm-0" (click)="cerrarSesion()"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</button>
+          </form>
     </div>
+
 </nav>
-<div >
-    <strong> <label class="form-label">Fecha de Nacimiento:</label></strong>
-    <input type="text" placeholder="Ej. Eduardo Fabian" class="form-control">
+<div class="container mt-5 mb-5 ">
+
+
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-8">
+        <div class="col">
+            <div class="form-outline">
+                <strong><label class="form-label" for="form3Example1">Nombres</label></strong>
+                <input disabled type="text" [(ngModel)]="empleado.nombre" id="form3Example1" class="form-control" />
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+
+                <strong> <label class="form-label" for="form3Example2">Apellidos</label></strong>
+                <input disabled type="text" [(ngModel)]="empleado.apellido" id="form3Example2" class="form-control" />
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-12">
+
+        <div class="col">
+            <div class="form-outline">
+                <strong><label class="form-label" for="form3Example2">Cédula</label></strong>
+                <input disabled type="text" [(ngModel)]="empleado.cedula"  id="form3Example2" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-outline">
+                <strong><label class="form-label" for="form3Example2">Usuario</label></strong>
+                <input disabled type="text" id="form3Example2" [(ngModel)]="empleado.usuario"  class="form-control" />
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-8">
+        <div class="col">
+            <div class="form-outline mb-4">
+                <strong><label class="form-label" for="form3Example3">Correo</label></strong>
+                <input type="email" [(ngModel)]="empleado.correo" id="form3Example3" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-outline">
+                <strong><label class="form-label" for="form3Example2">Password</label></strong>
+                <input type="text" id="form3Example2" [(ngModel)]="empleado.password" class="form-control" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-12">
+
+        <div class="col">
+            <strong> <label class="form-label" for="form3Example1">Estado de vacunación</label></strong>
+            <select class="form-select" id="inputGroupSelect02">
+                <option selected>-Seleccionar-</option>
+                <option value="1" data-bs-toggle="modal" data-bs-target="#modalForm">Vacunado</option>
+                <option value="2">No Vacunado</option>
+            </select>
+
+        </div>
+
+    </div><br>
+
+    <div class="row mb-8">
+
+        <div class="col">
+            <div class="form-outline">
+                <strong><label for="start">Fecha Primera Dosis: </label><br></strong>
+                <input type="date" id="start" name="trip-start" min="2020-01-01" max="2040-12-31">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <strong>  <label for="start">Fecha Segunda Dosis: </label><br></strong>
+                <input type="date" id="start" name="trip-start" min="2020-01-01" max="2040-12-31">
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline ">
+                <strong> <label for="start">Tipo de Vacuna</label></strong>
+                <select class="form-select" id="inputGroupSelect03">
+                    <option selected>-Seleccionar-</option>
+                    <option value="1" data-bs-toggle="modal" data-bs-target="#modalForm">Sputnik</option>
+                    <option value="2">AstraZeneca</option>
+                    <option value="3">Pfizer</option>
+                    <option value="4">Jhonson&Jhonson</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr><br>
+    <div class="col text-center">
+        <button class="btn btn-primary mt-4">
+            Guardar <i class="fas fa-save"></i>
+        </button>
+    </div>
+
+
 </div>
 
-<div >
-    <strong> <label class="form-label">Dirección de Domicilio:</label> </strong>
-    <input type="text" placeholder="Ej. Cardenas Muñoz" class="form-control">
-</div>
-<div >
-    <strong> <label class="form-label">Teléfono:</label></strong>
-    <input required maxlength="10" type="text"
-        onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-       placeholder="Ej. 1245212166" class="form-control">
-</div>
-<div >
-    <strong> <label class="form-label">Estado de Vacunación:</label></strong>
-    <input type="text"  placeholder="Ej. ejemplo@email.com" class="form-control">
-    <small id="emailHelp" class="form-text text-muted">Nunca compartas tu correo con
-        nadie.</small>
-</div>
 
-<div class="col text-center">
-    <button  class="btn btn-primary mt-4">
-        Guardar <i class="fas fa-save"></i>
-    </button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-4">
+
+            <!-- Modal -->
+
+            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <h1>insterte nuevo</h1>
+                                <hr>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Nombres:</label></strong>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)"
+                                        placeholder="Ej. Eduardo Fabian" class="form-control">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Apellidos:</label> </strong>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)"
+                                        placeholder="Ej. Cardenas Muñoz" class="form-control">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <strong> <label class="form-label">Cédula:</label></strong>
+                                    <input required maxlength="10" type="text"
+                                        onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                                        placeholder="Ej. 1245212166" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <strong><label for="email">Correo:</label></strong>
+                                    <input type="text" class="form-control" placeholder="Ej. ejemplo@email.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email"
+                                        ngModel #emailref="ngModel">
+                                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)"
+                                        class="alert alert-danger">
+                                        <div [hidden]="!emailref.errors?.pattern">
+                                            Ingrese un correo válido
+                                        </div>
+                                    </div>
+                                    <small id="emailHelp" class="form-text text-muted">Nunca compartas tu correo
+                                        con
+                                        nadie.</small>
+                                </div>
+
+                                <div class="col text-center">
+                                    <button class="btn btn-primary mt-4">
+                                        Guardar <i class="fas fa-save"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </div>

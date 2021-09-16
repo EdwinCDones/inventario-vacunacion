@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee';
 import { ServicioService } from 'src/app/servicio/servicio.service';
 
@@ -10,7 +11,7 @@ import { ServicioService } from 'src/app/servicio/servicio.service';
 })
 export class AdministrativoComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private service: ServicioService) { }
+  constructor(private formBuilder: FormBuilder, private service: ServicioService, private router: Router) { }
 
   ngOnInit(): void {
     this.getEmpleados();
@@ -19,15 +20,18 @@ export class AdministrativoComponent implements OnInit {
 
   ];
 
-  selectedEmployee: Employee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '' };
+  selectedEmployee: Employee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '', rol:'' };
 
   openForEdit(employee: Employee): void {
-    this.selectedEmployee = { id: employee.id, nombre: employee.nombre, 
-      apellido: employee.apellido, 
-      cedula: employee.cedula, 
-      correo: employee.correo, 
+    this.selectedEmployee = {
+      id: employee.id, nombre: employee.nombre,
+      apellido: employee.apellido,
+      cedula: employee.cedula,
+      correo: employee.correo,
       usuario: employee.usuario,
-      password: employee.password };
+      password: employee.password,
+      rol: employee.rol
+    };
   }
 
   addOrEdit(): void {
@@ -45,7 +49,7 @@ export class AdministrativoComponent implements OnInit {
   delete(): void {
     if (confirm('Estas seguro de eliminar este registro?')) {
       this.empleados = this.empleados.filter(x => x != this.selectedEmployee);
-      this.selectedEmployee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '' };
+      this.selectedEmployee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '', rol: '' };
     }
   }
 
@@ -79,7 +83,7 @@ export class AdministrativoComponent implements OnInit {
   }
 
   resetEmpleado() {
-    this.selectedEmployee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '' };
+    this.selectedEmployee = { id: 0, nombre: '', apellido: '', cedula: '', correo: '', usuario: '', password: '', rol: '' };
   }
 
   validarFormulario(employee: Employee) {
@@ -104,7 +108,7 @@ export class AdministrativoComponent implements OnInit {
       isvalido = false;
       mensaje += "El correo es requerido \n";
     }
-    
+
 
     if (!isvalido) {
       alert(mensaje);
@@ -112,5 +116,12 @@ export class AdministrativoComponent implements OnInit {
 
     return isvalido;
   }
+
+  cerrarSesion(){
+    this.service.cerrarSession();
+    this.router.navigate(['login']);
+  }
+
+
 }
 

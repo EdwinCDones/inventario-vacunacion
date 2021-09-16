@@ -4,12 +4,13 @@ import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { AdministrativoComponent } from './componentes/administrativo/administrativo.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { UserGuardGuard } from './user-guard.guard';
 
 const routes: Routes = [
-  {path: 'home', component: AppComponent},
-  {path: 'empleado', component: EmpleadoComponent},
-  {path: 'administrativo', component: AdministrativoComponent},
-  {path: 'login', component: LoginComponent},
+  { path: 'home', canActivate: [UserGuardGuard], component: AppComponent },
+  { path: 'empleado', component: EmpleadoComponent, canActivate: [UserGuardGuard] },
+  { path: 'administrativo', canActivate: [UserGuardGuard], component: AdministrativoComponent },
+  { path: 'login', component: LoginComponent },
   //{path: '**', component: AppComponent}
 ];
 
@@ -18,5 +19,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  
- }
+
+}

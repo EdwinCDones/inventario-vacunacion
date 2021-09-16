@@ -12,6 +12,14 @@ import { LoginComponent } from './componentes/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicioService } from './servicio/servicio.service';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +34,15 @@ import { ServicioService } from './servicio/servicio.service';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    CalendarModule
+
+   
   ],
   providers: [ServicioService],
   bootstrap: [AppComponent]

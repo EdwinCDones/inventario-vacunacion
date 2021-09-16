@@ -6,6 +6,7 @@ export interface  Employee {
     correo: string;
     usuario: string;
     password: string;
+    rol: string;
 }
 
 
